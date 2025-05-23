@@ -34,20 +34,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔄 Cloner le code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: 🏗️ Builder le projet
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Build site
         run: npm run build
 
-      - name: 📤 Déployer via FTP
-        uses: sebastianpopp/ftp-action@releases/v2
-        with:
-          host: ${{ secrets.FTP_HOST }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: ./dist
-          remoteDir: /public_html/theo
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify deploy --prod --dir=dist --site=$NETLIFY_SITE_ID

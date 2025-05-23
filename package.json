@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "workflow": "start-server-and-test dev http://localhost:5173 cypress run",
     "test:e2e": "cypress run",
     "dev": "vite",
     "build": "vite build",

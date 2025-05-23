@@ -3,6 +3,6 @@
 <template>
   <main>
     <!-- test -->
-    <h1>application très mid</h1>
+    <h1>Bienvenue sur cette application très mid</h1>
   </main>
 </template>

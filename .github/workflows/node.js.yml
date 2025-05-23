@@ -30,7 +30,7 @@ jobs:
       - run: npm run workflow
 
   deploy:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +41,7 @@ jobs:
         run: npm run build
 
       - name: 📤 Déployer via FTP
-        uses: sebastianpopp/ftp-action@v1.2.0
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}

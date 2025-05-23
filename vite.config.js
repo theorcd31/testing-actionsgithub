@@ -1,3 +1,4 @@
+/* eslint-env node */
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
@@ -11,7 +12,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  base: import.meta.env.VITE_BASE_URL || '/',
+  base: process.env.VITE_BASE_URL || '/',
   build: {
     outDir: 'dist',
   },
